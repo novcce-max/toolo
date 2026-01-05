@@ -1,0 +1,29 @@
+<!-- 文件路径: /public/og.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Toolo OpenGraph">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f1f5f9"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="72" y="72" width="1056" height="486" rx="44" fill="#ffffff" stroke="#e2e8f0"/>
+
+  <!-- Toolo wordmark（圆润笔画） -->
+  <g transform="translate(140, 210)" fill="none" stroke="#0f172a" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 0H170"/>
+    <path d="M85 0V120"/>
+    <circle cx="270" cy="70" r="44"/>
+    <circle cx="410" cy="70" r="44"/>
+    <path d="M540 -10V130"/>
+    <circle cx="680" cy="70" r="44"/>
+  </g>
+
+  <text x="140" y="470" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="34" fill="#334155">
+    本地处理 · 图片 / GIF / 字幕工具
+  </text>
+  <text x="140" y="518" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="22" fill="#64748b">
+    默认不上传 · 无登录 · 无后端队列
+  </text>
+</svg>

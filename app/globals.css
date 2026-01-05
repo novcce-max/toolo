@@ -1,26 +1,56 @@
+/* 文件路径: /app/globals.css */
 @import "tailwindcss";
 
+/* 仅全局基础样式：禁止 @apply / @layer / ui-* 封装类 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* 轻量全局色值（仅用于基础背景/文字，组件样式交给 className） */
+  --bg: 248 250 252; /* slate-50 */
+  --fg: 15 23 42; /* slate-900 */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* 系统字体栈：不引入在线字体、不使用 next/font/google */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+}
+
+/* 轻量滚动条：避免深色块 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.55) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.55);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 选择高亮（清爽、浅色） */
+::selection {
+  background: rgba(148, 163, 184, 0.35);
+}
+
+/* 移动端点击高亮（更克制） */
+* {
+  -webkit-tap-highlight-color: rgba(148, 163, 184, 0.25);
 }

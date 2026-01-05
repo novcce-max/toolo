@@ -1,0 +1,31 @@
+cat > public/apple-touch-icon.svg <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="Toolo">
+  <rect width="180" height="180" rx="44" fill="#FFFFFF"/>
+  <g transform="translate(18,44)" fill="#0F172A">
+    <!-- T -->
+    <rect x="0" y="0" width="44" height="14" rx="7"/>
+    <rect x="15" y="0" width="14" height="92" rx="7"/>
+
+    <!-- o -->
+    <g transform="translate(54,0)" fill-rule="evenodd">
+      <circle cx="30" cy="46" r="30"/>
+      <circle cx="30" cy="46" r="15" fill="#FFFFFF"/>
+    </g>
+
+    <!-- o -->
+    <g transform="translate(114,0)" fill-rule="evenodd">
+      <circle cx="30" cy="46" r="30"/>
+      <circle cx="30" cy="46" r="15" fill="#FFFFFF"/>
+    </g>
+
+    <!-- l -->
+    <rect x="156" y="0" width="14" height="92" rx="7"/>
+
+    <!-- o -->
+    <g transform="translate(174,0)" fill-rule="evenodd">
+      <circle cx="30" cy="46" r="30"/>
+      <circle cx="30" cy="46" r="15" fill="#FFFFFF"/>
+    </g>
+  </g>
+</svg>
+SVG

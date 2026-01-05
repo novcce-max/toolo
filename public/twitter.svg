@@ -1,0 +1,39 @@
+cat > public/twitter.svg <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Toolo">
+  <defs>
+    <radialGradient id="halo" cx="55%" cy="40%" r="75%">
+      <stop offset="0" stop-color="#E2E8F0" stop-opacity="1"/>
+      <stop offset="1" stop-color="#E2E8F0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+  <rect width="1200" height="630" fill="url(#halo)"/>
+
+  <g transform="translate(310,210)" fill="#0F172A">
+    <rect x="0" y="0" width="260" height="64" rx="32"/>
+    <rect x="98" y="0" width="64" height="300" rx="32"/>
+
+    <g transform="translate(320,0)" fill-rule="evenodd">
+      <circle cx="110" cy="150" r="110"/>
+      <circle cx="110" cy="150" r="58" fill="#FFFFFF"/>
+    </g>
+
+    <g transform="translate(560,0)" fill-rule="evenodd">
+      <circle cx="110" cy="150" r="110"/>
+      <circle cx="110" cy="150" r="58" fill="#FFFFFF"/>
+    </g>
+
+    <rect x="860" y="0" width="64" height="300" rx="32"/>
+
+    <g transform="translate(960,0)" fill-rule="evenodd">
+      <circle cx="110" cy="150" r="110"/>
+      <circle cx="110" cy="150" r="58" fill="#FFFFFF"/>
+    </g>
+  </g>
+
+  <g fill="#334155" opacity="0.75">
+    <rect x="420" y="530" width="380" height="12" rx="6"/>
+    <rect x="420" y="555" width="240" height="12" rx="6"/>
+  </g>
+</svg>
+SVG
