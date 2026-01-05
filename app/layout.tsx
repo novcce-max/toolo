@@ -48,6 +48,14 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+
+  // =========================================================
+  // ✅ 临时验证/临时 Head 注入区（用完删除）
+  // 【百度验证】验证完成后删除整个 other 字段
+  // =========================================================
+  other: {
+    'baidu-site-verification': 'codeva-9gM2O5gJlP',
+  },
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
