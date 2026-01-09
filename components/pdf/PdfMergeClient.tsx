@@ -160,12 +160,16 @@ export default function PdfMergeClient() {
         copiedPages.forEach((p: any) => mergedPdf.addPage(p))
       }
 
-      const mergedBytes: Uint8Array = await mergedPdf.save({ useObjectStreams: true })
-      const blob = new Blob([mergedBytes], { type: 'application/pdf' })
+      const mergedBytes = (await mergedPdf.save({ useObjectStreams: true })) as Uint8Array
+
+      const arrayBuffer = new ArrayBuffer(mergedBytes.byteLength)
+      new Uint8Array(arrayBuffer).set(mergedBytes)
+
+      const blob = new Blob([arrayBuffer], { type: 'application/pdf' })
       const url = URL.createObjectURL(blob)
 
       setDownloadUrl(url)
-      setMergedSize(mergedBytes.length)
+      setMergedSize(mergedBytes.byteLength)
       setStatus('合并完成，已在本地生成新的 PDF 文件，可以点击“下载合并后 PDF”。')
     } catch {
       setStatus('合并过程中出现错误，可以尝试减少文件数量、缩小文件体积或换一个 PDF 文件重试。')
@@ -197,15 +201,9 @@ export default function PdfMergeClient() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="space-y-3">
           <div className="text-sm font-medium text-slate-900">步骤一：选择多个 PDF 文件</div>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            点击选择或将多个 PDF 文件一次性拖入。文件仅在浏览器本地读取，不会上传服务器。
-          </p>
+          <p className="text-sm text-slate-600 leading-relaxed">点击选择或将多个 PDF 文件一次性拖入。文件仅在浏览器本地读取，不会上传服务器。</p>
 
-          <div
-            onDrop={onDrop}
-            onDragOver={onDragOver}
-            className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 space-y-3"
-          >
+          <div onDrop={onDrop} onDragOver={onDragOver} className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 space-y-3">
             <div className="flex flex-col items-center justify-center gap-2 text-center">
               <button
                 type="button"
@@ -226,9 +224,7 @@ export default function PdfMergeClient() {
             </div>
           </div>
 
-          <div className="text-[11px] text-slate-500 leading-relaxed">
-            提示：若页面通过站内 Link 跳转进入，本工具依然可用；不依赖“刷新页面”触发脚本。
-          </div>
+          <div className="text-[11px] text-slate-500 leading-relaxed">提示：若页面通过站内 Link 跳转进入，本工具依然可用；不依赖“刷新页面”触发脚本。</div>
         </div>
 
         <div className="space-y-3">
@@ -243,10 +239,7 @@ export default function PdfMergeClient() {
             ) : (
               <ul className="space-y-2 text-xs text-slate-700">
                 {files.map((item, index) => (
-                  <li
-                    key={item.id}
-                    className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 gap-2"
-                  >
+                  <li key={item.id} className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 gap-2">
                     <div className="flex-1 min-w-0">
                       <div className="truncate font-medium text-slate-900">{item.file.name}</div>
                       <div className="text-[11px] text-slate-500">{formatSize(item.file.size)}</div>
@@ -285,9 +278,7 @@ export default function PdfMergeClient() {
 
         <div className="space-y-3">
           <div className="text-sm font-medium text-slate-900">步骤三：合并并下载</div>
-          <p className="text-sm text-slate-600 leading-relaxed">
-            点击合并后在本地生成一个新的 PDF 文件，你可以直接下载，并查看合并后文件大小。
-          </p>
+          <p className="text-sm text-slate-600 leading-relaxed">点击合并后在本地生成一个新的 PDF 文件，你可以直接下载，并查看合并后文件大小。</p>
 
           <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 space-y-3">
             <div className="flex items-baseline justify-between text-xs text-slate-700">
@@ -321,9 +312,7 @@ export default function PdfMergeClient() {
 
             <div className="text-xs text-slate-500">{status}</div>
 
-            <div className="text-[11px] text-slate-500 leading-relaxed">
-              {libReady ? 'PDF 处理库已就绪。' : 'PDF 处理库加载中（首次进入可能需要 1-3 秒）。'}
-            </div>
+            <div className="text-[11px] text-slate-500 leading-relaxed">{libReady ? 'PDF 处理库已就绪。' : 'PDF 处理库加载中（首次进入可能需要 1-3 秒）。'}</div>
           </div>
         </div>
       </div>
