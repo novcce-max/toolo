@@ -11,6 +11,7 @@ export default function Header() {
   const navItems: NavItem[] = [
     { href: '/image', label: '图片' },
     { href: '/gif', label: 'GIF' },
+    { href: '/pdf', label: 'PDF 工具' },
     { href: '/text', label: '字幕文本' },
     { href: '/privacy', label: '隐私' },
   ]
@@ -24,7 +25,7 @@ export default function Header() {
             className="inline-flex items-center gap-2 rounded-xl px-1.5 py-1 hover:bg-slate-100/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
             aria-label="toolo.cn 首页"
           >
-            <TooloWordmark className="text-slate-900" sizePx={28} dotPx={6} dotGapPx={2} />
+            <TooloWordmark className="text-slate-900" sizePx={28} />
           </Link>
 
           {/* 移动端允许横向滚动，避免拥挤；不改整体风格 */}

@@ -524,6 +524,8 @@ export default function BatchGifCompress() {
         onDrop={onDrop}
         onDragOver={onDragOver}
         className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm p-5"
+        role="region"
+        aria-label="文件上传区域"
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
@@ -533,7 +535,14 @@ export default function BatchGifCompress() {
 
           <label className="inline-flex cursor-pointer items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-900 shadow-sm hover:bg-slate-50 active:scale-[0.99]">
             选择文件
-            <input type="file" accept=".gif,image/gif" multiple className="hidden" onChange={onPickFiles} />
+            <input
+              type="file"
+              accept=".gif,image/gif"
+              multiple
+              className="hidden"
+              onChange={onPickFiles}
+              aria-label="选择 GIF 文件进行压缩"
+            />
           </label>
         </div>
 
@@ -544,6 +553,7 @@ export default function BatchGifCompress() {
               onClick={startCompress}
               disabled={isWorking || !hasAnyPending}
               className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+              aria-label={isWorking ? `正在处理，进度：${progress.current}/${progress.total}` : '开始压缩选中的 GIF 文件'}
             >
               {isWorking ? '处理中…' : '开始压缩'}
             </button>
@@ -567,7 +577,7 @@ export default function BatchGifCompress() {
             </button>
 
             {isWorking && progress.total > 0 && (
-              <div className="ml-auto text-xs text-slate-600">
+              <div className="ml-auto text-xs text-slate-600" role="status" aria-live="polite" aria-atomic="true">
                 进度：{progress.current}/{progress.total}（串行处理）
               </div>
             )}
@@ -577,7 +587,7 @@ export default function BatchGifCompress() {
 
       {/* 参数区（默认折叠） */}
       <details className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm p-5">
-        <summary className="cursor-pointer select-none text-sm font-medium text-slate-900">
+        <summary className="cursor-pointer select-none text-sm font-medium text-slate-900" role="button" aria-expanded="false">
           压缩参数（可选）
         </summary>
 
@@ -649,15 +659,15 @@ export default function BatchGifCompress() {
 
       {/* 列表区 */}
       {jobs.length > 0 && (
-        <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm">
+        <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm" role="region" aria-label="文件处理列表">
           <div className="border-b border-slate-200 px-5 py-4">
             <div className="text-sm font-semibold text-slate-900">文件列表</div>
             <div className="mt-1 text-xs text-slate-600">状态：待处理 / 处理中 / 完成 / 失败（失败可单项重试）</div>
           </div>
 
-          <div className="divide-y divide-slate-200">
+          <div className="divide-y divide-slate-200" role="list">
             {jobs.map((j) => (
-              <div key={j.id} className="px-5 py-4">
+              <div key={j.id} className="px-5 py-4" role="listitem">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0 space-y-1">
                     <div className="truncate text-sm font-medium text-slate-900">{j.name}</div>
@@ -695,6 +705,7 @@ export default function BatchGifCompress() {
                       onClick={() => downloadSingle(j)}
                       disabled={isWorking || j.status !== '完成' || !j.outputUrl}
                       className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 shadow-sm hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                      aria-label={`下载压缩后的文件：${j.name}`}
                     >
                       下载
                     </button>
@@ -704,6 +715,7 @@ export default function BatchGifCompress() {
                       onClick={() => retryOne(j.id)}
                       disabled={isWorking || j.status !== '失败'}
                       className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-900 shadow-sm hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                      aria-label={`重试处理文件：${j.name}`}
                     >
                       重试
                     </button>

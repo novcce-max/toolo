@@ -98,13 +98,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       path: '/image/convert',
     },
 
-    // 追加：/gif/video-to-gif（保持排序稳定：只在末尾追加）
-    // 说明：此条与上方已有项保持相同结构；按要求仅追加末尾，不改动既有顺序与 lastModified 逻辑
+    // 追加：PDF 与 PDF 频道相关页面（保持排序稳定：只在末尾追加）
     {
-      url: 'https://toolo.cn/gif/video-to-gif',
-      changeFrequency: 'yearly',
-      priority: 0.3,
-      path: '/gif/video-to-gif',
+      url: 'https://toolo.cn/pdf',
+      changeFrequency: 'monthly',
+      priority: 0.7,
+      path: '/pdf',
+    },
+    {
+      url: 'https://toolo.cn/pdf/merge',
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      path: '/pdf/merge',
+    },
+    {
+      url: 'https://toolo.cn/pdf/split',
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      path: '/pdf/split',
+    },
+    {
+      url: 'https://toolo.cn/pdf/compress',
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      path: '/pdf/compress',
+    },
+    {
+      url: 'https://toolo.cn/pdf/images-to-pdf',
+      changeFrequency: 'monthly',
+      priority: 0.5,
+      path: '/pdf/images-to-pdf',
+    },
+    {
+      url: 'https://toolo.cn/pdf/pdf-to-images',
+      changeFrequency: 'monthly',
+      priority: 0.5,
+      path: '/pdf/pdf-to-images',
+    },
+    {
+      url: 'https://toolo.cn/pdf/rotate',
+      changeFrequency: 'monthly',
+      priority: 0.5,
+      path: '/pdf/rotate',
     },
   ] as const
 

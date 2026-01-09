@@ -1,0 +1,152 @@
+# Toolo 项目全局约束（GLOBAL_RULES.md）
+
+> 适用范围：Next.js 16.1.1（App Router）  
+> 本文档为强制约束，用于 Cursor 覆盖式执行。任何生成、修改代码必须遵守。
+
+---
+
+## 一、技术栈（不可变）
+
+- Next.js 16.1.1
+- App Router（/app 目录）
+- TypeScript（严格模式）
+- React Server Components（默认 Server Component）
+- Tailwind CSS
+- 不引入任何第三方 UI 组件库
+- 不引入客户端状态管理库（Redux / Zustand / MobX 等）
+- 能用原生能力解决的，不允许引入依赖
+
+---
+
+## 二、渲染与组件规则
+
+- 页面组件默认 Server Component
+- 仅在以下情况允许 `use client`：
+  - 明确需要浏览器 API（File / Clipboard / Canvas / Drag 等）
+  - 明确需要事件交互（onClick / onChange）
+- 禁止为了方便而使用 Client Component
+- Client Component 必须：
+  - 最小化
+  - 不包裹整页
+  - 只负责交互，不负责 SEO 与结构
+
+---
+
+## 三、页面结构红线（强制）
+
+所有页面必须包含以下结构（除非明确说明某项不存在）：
+
+1. SEO Metadata  
+   - title  
+   - description  
+   - alternates  
+   - canonical  
+
+2. JSON-LD（结构化数据）  
+   - WebApplication / CollectionPage / FAQPage / SearchAction 按页面类型使用  
+   - 不得缺失  
+   - 不得伪造  
+
+3. Hero 区块  
+   - 唯一 H1  
+   - 简明描述  
+   - 主 CTA  
+
+4. 分类入口 / 使用路径引导  
+   - 工具集合页 / 频道页必须有  
+   - 单工具页可按需省略  
+
+5. 热门工具区块  
+   - 内部链接  
+   - 不得删除  
+
+6. 站内搜索  
+   - 若原页面存在，必须保留  
+
+7. FAQ  
+   - 若原页面存在，必须保留  
+   - 必须同步 JSON-LD  
+
+---
+
+## 四、SEO 强约束（不可删、不可弱化）
+
+### 1. Title
+- 面向真实搜索行为
+- 明确「做什么 + 对象」
+- 禁止品牌词堆叠
+
+### 2. Description
+必须同时包含：
+- 动作（convert / resize / compress 等）
+- 对象（image / pdf / video）
+- 场景（online / browser / local）
+- 工具卖点（free / fast / no upload）
+
+### 3. 关键词策略
+- 必须自然布局：
+  - online
+  - free
+  - no upload
+  - local processing
+- 禁止关键词堆砌
+
+### 4. 结构化数据
+- 每个页面必须有 JSON-LD
+- FAQ 页面必须内容 + JSON-LD 同步
+- Search 页面必须包含 SearchAction
+
+---
+
+## 五、UI / 视觉约束
+
+- 页面背景：白色或浅灰
+- 禁止大面积黑色背景（如整块 bg-black）
+- SVG Icon 优先
+- 工具页 / 频道页视觉风格统一
+- 不追求炫技动画，优先清晰与可用性
+
+---
+
+## 六、行为与修改规则（极其重要）
+
+- 不得删除任何已有功能区块
+- 不得为了“优化”而重构页面结构
+- 所有修改必须是增量式
+- 信息不足时采用最保守实现
+- 已存在的 SEO / JSON-LD / Hero / 搜索 / FAQ 一律保留
+
+---
+
+## 七、代码与工程规范
+
+- 修改文件时必须输出完整文件
+- 不允许只给 diff
+- 不输出解释
+- 不输出注释
+- 不输出多余文本
+- 只输出代码或文件内容
+
+---
+
+## 八、禁止事项（硬性）
+
+- 禁止引入 UI 框架（MUI / AntD / Chakra 等）
+- 禁止引入状态管理库
+- 禁止删除 SEO / JSON-LD
+- 禁止重构页面结构
+- 禁止改变语义层级（H1 / H2）
+- 禁止大面积深色背景
+
+---
+
+## 九、执行优先级
+
+1. 本 GLOBAL_RULES.md
+2. 项目内已有页面结构
+3. Next.js 16.1.1 官方行为
+4. 保守实现原则
+
+---
+
+任何违反本文件的生成结果，视为无效。

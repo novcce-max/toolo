@@ -48,14 +48,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-
-  // =========================================================
-  // ✅ 临时验证/临时 Head 注入区（用完删除）
-  // 【百度验证】验证完成后删除整个 other 字段
-  // =========================================================
-  other: {
-    'baidu-site-verification': 'codeva-9gM2O5gJlP',
-  },
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -84,6 +76,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="zh-CN" className="h-full">
       <body className="min-h-full bg-slate-50 text-slate-900">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-1/2 focus:-translate-x-1/2 focus:rounded-full focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-sm focus:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+        >
+          跳到主要内容
+        </a>
+
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -94,7 +93,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Header />
 
           {/* 全站内容基线：统一横向边距与最大宽度，避免页面贴边 */}
-          <main className="flex-1">
+          <main id="main-content" className="flex-1">
             <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
               {children}
             </div>

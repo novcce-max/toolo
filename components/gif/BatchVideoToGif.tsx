@@ -20,6 +20,16 @@ type ModernGifModule = {
   }) => Promise<Uint8Array>
 }
 
+function getUAFlags() {
+  if (typeof navigator === 'undefined') {
+    return { isIOS: false, isWeChat: false }
+  }
+  const ua = navigator.userAgent || ''
+  const isIOS = /iP(hone|ad|od)/u.test(ua)
+  const isWeChat = /MicroMessenger/u.test(ua)
+  return { isIOS, isWeChat }
+}
+
 interface ValidationResult {
   ok: boolean
   message?: string
@@ -116,52 +126,77 @@ async function waitMediaEvent<K extends keyof HTMLMediaElementEventMap>(
 async function seekAndWaitFrame(video: HTMLVideoElement, targetTime: number, cancelRef: React.MutableRefObject<boolean>) {
   if (cancelRef.current) throw new Error('已取消')
 
-  // 触发 seek（视频暂停状态也可 seek）
-  try {
-    video.currentTime = targetTime
-  } catch {
-    throw new Error('无法定位到指定时间点（视频未就绪或不支持跳转）')
-  }
+  let lastError: unknown = null
 
-  await waitMediaEvent(video, 'seeked', 8000)
-  if (cancelRef.current) throw new Error('已取消')
+  // iOS / 微信 上某些视频 seek 容易超时，这里做有限次重试
+  for (let attempt = 0; attempt < 3; attempt++) {
+    if (cancelRef.current) throw new Error('已取消')
 
-  // 某些浏览器 seeked 后仍未到 HAVE_CURRENT_DATA，需要额外等待
-  if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
-    await waitMediaEvent(video, 'loadeddata', 8000)
-  }
-
-  if (cancelRef.current) throw new Error('已取消')
-
-  const rvfc = (video as unknown as { requestVideoFrameCallback?: (cb: (now: number, metadata: unknown) => void) => number })
-    .requestVideoFrameCallback
-
-  if (typeof rvfc === 'function') {
-    await new Promise<void>((resolve) => {
-      let done = false
-      const timer = window.setTimeout(() => {
-        if (done) return
-        done = true
-        resolve()
-      }, 2000)
-
+    try {
+      // 触发 seek（视频暂停状态也可 seek），每次尝试稍微偏移一点时间点，避免卡在同一关键帧
       try {
-        rvfc(() => {
-          if (done) return
-          done = true
-          window.clearTimeout(timer)
-          resolve()
-        })
+        const jitter = attempt * 0.0005
+        video.currentTime = targetTime + jitter
       } catch {
-        window.clearTimeout(timer)
-        resolve()
+        throw new Error('无法定位到指定时间点（视频未就绪或不支持跳转）')
       }
-    })
-    return
+
+      await waitMediaEvent(video, 'seeked', 8000)
+      if (cancelRef.current) throw new Error('已取消')
+
+      // 某些浏览器 seeked 后仍未到 HAVE_CURRENT_DATA，需要额外等待
+      if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+        await waitMediaEvent(video, 'loadeddata', 8000)
+      }
+
+      if (cancelRef.current) throw new Error('已取消')
+
+      const rvfc = (video as unknown as { requestVideoFrameCallback?: (cb: (now: number, metadata: unknown) => void) => number })
+        .requestVideoFrameCallback
+
+      if (typeof rvfc === 'function') {
+        await new Promise<void>((resolve) => {
+          let done = false
+          const timer = window.setTimeout(() => {
+            if (done) return
+            done = true
+            resolve()
+          }, 2000)
+
+          try {
+            rvfc(() => {
+              if (done) return
+              done = true
+              window.clearTimeout(timer)
+              resolve()
+            })
+          } catch {
+            window.clearTimeout(timer)
+            resolve()
+          }
+        })
+        return
+      }
+
+      // 兜底：给一次事件循环时间
+      await new Promise<void>((resolve) => window.setTimeout(resolve, 0))
+      return
+    } catch (err) {
+      lastError = err
+      const msg = err instanceof Error ? err.message : String(err)
+      const isTimeout = msg.includes('等待事件超时')
+
+      // 非超时错误或已达到最大重试次数，直接抛出
+      if (!isTimeout || attempt === 2) {
+        throw err
+      }
+
+      // 简单退避一小段时间后再试，给浏览器一点缓冲时间
+      await new Promise<void>((resolve) => window.setTimeout(resolve, 200))
+    }
   }
 
-  // 兜底：给一次事件循环时间
-  await new Promise<void>((resolve) => window.setTimeout(resolve, 0))
+  throw (lastError instanceof Error ? lastError : new Error('无法定位到指定时间点'))
 }
 
 function buildValidation(args: {
@@ -199,7 +234,8 @@ function buildValidation(args: {
   const outW = maxWidth > 0 ? Math.min(maxWidth, naturalWidth) : naturalWidth
   const outH = Math.max(1, Math.round((naturalHeight * outW) / Math.max(1, naturalWidth)))
   const pixels = outW * outH
-  const PIXEL_LIMIT = 1_200_000
+  // 针对现在主流设备（高分辨率视频）适当放宽像素上限
+  const PIXEL_LIMIT = 2_000_000
   if (pixels > PIXEL_LIMIT) {
     return {
       ok: false,
@@ -222,10 +258,24 @@ export default function BatchVideoToGif() {
   const [errorMsg, setErrorMsg] = useState<string>('')
   const [progressText, setProgressText] = useState<string>('')
 
-  const [maxWidth, setMaxWidth] = useState<number>(480)
-  const [fps, setFps] = useState<number>(10)
+  const [maxWidth, setMaxWidth] = useState<number>(() => {
+    const { isIOS, isWeChat } = getUAFlags()
+    // 移动端 / 微信 上默认参数更保守一些
+    if (isIOS || isWeChat) return 360
+    return 480
+  })
+  const [fps, setFps] = useState<number>(() => {
+    const { isIOS, isWeChat } = getUAFlags()
+    if (isIOS || isWeChat) return 8
+    return 10
+  })
   const [startSec, setStartSec] = useState<number>(0)
-  const [durationSec, setDurationSec] = useState<number>(3)
+  const [durationSec, setDurationSec] = useState<number>(() => {
+    const { isIOS, isWeChat } = getUAFlags()
+    // iOS / 微信 上更多是短片段场景，默认 2.5s
+    if (isIOS || isWeChat) return 2.5
+    return 3
+  })
   const [maxColors, setMaxColors] = useState<number>(128)
 
   const [naturalWidth, setNaturalWidth] = useState<number>(0)
@@ -414,6 +464,9 @@ export default function BatchVideoToGif() {
       const frames: Array<{ width: number; height: number; delay: number; data: Uint8ClampedArray }> = []
       const totalFrames = computedPlan.totalFrames
 
+      const { isIOS, isWeChat } = getUAFlags()
+      const highPixel = computedPlan.outputWidth * computedPlan.outputHeight > 1_000_000
+
       // 防止越界：最后一帧时间点可能略超出 duration，做轻微 clamp
       const endSec = Math.min(computedPlan.startSec + computedPlan.durationSec, Math.max(0, video.duration - 0.0001))
 
@@ -443,7 +496,14 @@ export default function BatchVideoToGif() {
         })
 
         // 让出主线程（防卡死）
-        if (i % 2 === 0) await new Promise<void>((r) => window.setTimeout(r, 0))
+        // - iOS / 微信 或 高像素 GIF：更激进地让步，降低一次性内存/CPU 峰值
+        // - 其他环境：维持较轻的让步频率
+        if (isIOS || isWeChat || highPixel) {
+          const delay = i % 2 === 0 ? 30 : 10
+          await new Promise<void>((r) => window.setTimeout(r, delay))
+        } else if (i % 2 === 0) {
+          await new Promise<void>((r) => window.setTimeout(r, 0))
+        }
       }
 
       if (frames.length === 0) throw new Error('未能抽取到有效帧')
@@ -476,8 +536,24 @@ export default function BatchVideoToGif() {
           : typeof err === 'string'
             ? err
             : '未知错误'
+      const { isIOS, isWeChat } = getUAFlags()
+      let friendlyMsg = msg === '已取消' ? '已取消' : msg
+
+      // iOS / 微信 上常见的超时 / seek 失败，给出额外说明，方便用户理解和调整
+      if (
+        (msg.includes('等待事件超时') ||
+          msg.includes('无法定位到指定时间点') ||
+          msg.includes('读取视频分辨率失败') ||
+          msg.includes('视频读取失败')) &&
+        (isIOS || isWeChat)
+      ) {
+        friendlyMsg +=
+          '。检测到当前为 iOS/微信 浏览环境，部分设备/编码格式对逐帧读取和时间跳转支持较弱，可能导致抽帧失败。' +
+          '建议尝试：1）截取更短片段；2）降低 maxWidth/FPS；3）在系统相册中导出为标准 MP4 再上传。'
+      }
+
       setStatus(cancelRef.current ? '已取消' : '失败')
-      setErrorMsg(msg === '已取消' ? '已取消' : msg)
+      setErrorMsg(friendlyMsg)
       setProgressText('')
     } finally {
       runningRef.current = false
