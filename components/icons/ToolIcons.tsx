@@ -258,6 +258,415 @@ export function IconText({ className, ...props }: IconProps) {
   )
 }
 
+/** PDF 主图标（分类入口）- 彩色 */
+export function IconPdf({ className, ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={cx('h-6 w-6', className)} {...props}>
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="#DC2626"
+        opacity="0.15"
+      />
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 5.5v3h3"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.5 10h5M7.5 13h4M7.5 16h5.5"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+/** PDF 压缩 - 彩色（压缩箭头 + PDF文档） */
+export function IconPdfCompress({ className, ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={cx('h-6 w-6', className)} {...props}>
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="#DC2626"
+        opacity="0.12"
+      />
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 5.5v3h3"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.5 10.5l2.5 2.5 2.5-2.5"
+        fill="none"
+        stroke="#F59E0B"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 13V9"
+        fill="none"
+        stroke="#F59E0B"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M7.5 11h5M7.5 14h4"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+    </svg>
+  )
+}
+
+/** PDF 合并 - 彩色（多个文档合并） */
+export function IconPdfMerge({ className, ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={cx('h-6 w-6', className)} {...props}>
+      <path
+        d="M4 6.5h7.5l3 3V18.5A2.5 2.5 0 0 1 12 21H4A2.5 2.5 0 0 1 1.5 18.5V9A2.5 2.5 0 0 1 4 6.5Z"
+        fill="#10B981"
+        opacity="0.15"
+      />
+      <path
+        d="M4 6.5h7.5l3 3V18.5A2.5 2.5 0 0 1 12 21H4A2.5 2.5 0 0 1 1.5 18.5V9A2.5 2.5 0 0 1 4 6.5Z"
+        fill="none"
+        stroke="#10B981"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.5 6.5v3h3"
+        fill="none"
+        stroke="#10B981"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.5 10h4M6.5 13h3.5"
+        fill="none"
+        stroke="#10B981"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <path
+        d="M8 4.5h7.5l3 3V16.5A2.5 2.5 0 0 1 16 19H8A2.5 2.5 0 0 1 5.5 16.5V7A2.5 2.5 0 0 1 8 4.5Z"
+        fill="#3B82F6"
+        opacity="0.15"
+      />
+      <path
+        d="M8 4.5h7.5l3 3V16.5A2.5 2.5 0 0 1 16 19H8A2.5 2.5 0 0 1 5.5 16.5V7A2.5 2.5 0 0 1 8 4.5Z"
+        fill="none"
+        stroke="#3B82F6"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.5 4.5v3h3"
+        fill="none"
+        stroke="#3B82F6"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.5 8h4M10.5 11h3.5"
+        fill="none"
+        stroke="#3B82F6"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <path
+        d="M12 12.5l2.5-2.5 2.5 2.5"
+        fill="none"
+        stroke="#10B981"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+/** PDF 拆分 - 彩色（文档拆分） */
+export function IconPdfSplit({ className, ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={cx('h-6 w-6', className)} {...props}>
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="#DC2626"
+        opacity="0.12"
+      />
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 5.5v3h3"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.5 10h5M7.5 13h4M7.5 16h5.5"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <path
+        d="M12 12.5v-4"
+        fill="none"
+        stroke="#F59E0B"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M10 10.5l2-2 2 2"
+        fill="none"
+        stroke="#F59E0B"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 14.5l2 2 2-2"
+        fill="none"
+        stroke="#F59E0B"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+/** 图片转 PDF - 彩色（图片 + PDF） */
+export function IconPdfImagesToPdf({ className, ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={cx('h-6 w-6', className)} {...props}>
+      <path
+        d="M5 7.5C5 6.119 6.119 5 7.5 5h6C14.881 5 16 6.119 16 7.5v6c0 1.381-1.119 2.5-2.5 2.5h-6C6.119 16 5 14.881 5 13.5v-6z"
+        fill="#0EA5E9"
+        opacity="0.15"
+      />
+      <path
+        d="M5 7.5C5 6.119 6.119 5 7.5 5h6C14.881 5 16 6.119 16 7.5v6c0 1.381-1.119 2.5-2.5 2.5h-6C6.119 16 5 14.881 5 13.5v-6z"
+        fill="none"
+        stroke="#0EA5E9"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.25 9.5a1.25 1.25 0 1 0 0-2.5a1.25 1.25 0 0 0 0 2.5z"
+        fill="#0EA5E9"
+        opacity="0.6"
+      />
+      <path
+        d="M5.5 14.5l3-3c.4-.4 1.05-.4 1.45 0l1.25 1.25c.4.4 1.05.4 1.45 0l1.55-1.55c.4-.4 1.05-.4 1.45 0L16.5 12"
+        fill="none"
+        stroke="#0EA5E9"
+        strokeWidth="2"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+      <path
+        d="M8 18.5h7.5l3 3V18.5A2.5 2.5 0 0 0 16 16H8A2.5 2.5 0 0 0 5.5 18.5v3A2.5 2.5 0 0 0 8 24h8A2.5 2.5 0 0 0 18.5 21.5V18.5"
+        fill="#DC2626"
+        opacity="0.12"
+      />
+      <path
+        d="M8 18.5h7.5l3 3V18.5A2.5 2.5 0 0 0 16 16H8A2.5 2.5 0 0 0 5.5 18.5v3A2.5 2.5 0 0 0 8 24h8A2.5 2.5 0 0 0 18.5 21.5V18.5"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.5 18.5v3h3"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.5 22h5M9.5 19.5h4"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <path
+        d="M14 16.5l2 2 2-2"
+        fill="none"
+        stroke="#10B981"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+/** PDF 转图片 - 彩色（PDF + 图片） */
+export function IconPdfToImages({ className, ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={cx('h-6 w-6', className)} {...props}>
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="#DC2626"
+        opacity="0.12"
+      />
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 5.5v3h3"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.5 10h5M7.5 13h4M7.5 16h5.5"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <path
+        d="M16 8.5l2-2 2 2"
+        fill="none"
+        stroke="#0EA5E9"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M18 6.5v4"
+        fill="none"
+        stroke="#0EA5E9"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M17 12.5C17 11.67 17.67 11 18.5 11s1.5.67 1.5 1.5"
+        fill="#0EA5E9"
+        opacity="0.3"
+      />
+      <path
+        d="M17 12.5C17 11.67 17.67 11 18.5 11s1.5.67 1.5 1.5"
+        fill="none"
+        stroke="#0EA5E9"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M15.5 15.5l3-3c.4-.4 1.05-.4 1.45 0l1.25 1.25c.4.4 1.05.4 1.45 0L22.5 13"
+        fill="none"
+        stroke="#0EA5E9"
+        strokeWidth="2"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+/** PDF 旋转 - 彩色（PDF + 旋转箭头） */
+export function IconPdfRotate({ className, ...props }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={cx('h-6 w-6', className)} {...props}>
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="#DC2626"
+        opacity="0.12"
+      />
+      <path
+        d="M6 5.5h7.5l3 3V18.5A2.5 2.5 0 0 1 14 21H6A2.5 2.5 0 0 1 3.5 18.5V8A2.5 2.5 0 0 1 6 5.5Z"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 5.5v3h3"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.5 10h5M7.5 13h4M7.5 16h5.5"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <path
+        d="M18.5 8.5c1.1 0 2 .9 2 2s-.9 2-2 2"
+        fill="none"
+        stroke="#F59E0B"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M17.5 6.5l2-2 2 2"
+        fill="none"
+        stroke="#F59E0B"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M17.5 12.5l2 2 2-2"
+        fill="none"
+        stroke="#F59E0B"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 /** 兼容旧导出命名（历史页面可能还在用） */
 export const ToolIconImage = IconImage
 export const ToolIconCompress = IconCompress

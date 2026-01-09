@@ -101,6 +101,22 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
           <Footer />
         </div>
+
+        {/* 百度统计 */}
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?73b30a6924f401b96260e9306a6c96d3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+            `.trim(),
+          }}
+        />
       </body>
     </html>
   )

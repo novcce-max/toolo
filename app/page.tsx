@@ -11,6 +11,10 @@ import {
   IconVideoToGif,
   IconSubtitle,
   IconText,
+  IconPdf,
+  IconPdfCompress,
+  IconPdfMerge,
+  IconPdfSplit,
 } from '@/components/icons/ToolIcons'
 
 export const metadata: Metadata = {
@@ -67,6 +71,7 @@ export default function HomePage({
       href: '/pdf/compress',
       badge: '推荐',
       tone: 'slate',
+      icon: <IconPdfCompress />,
     },
     {
       title: 'PDF 合并',
@@ -74,6 +79,7 @@ export default function HomePage({
       href: '/pdf/merge',
       badge: '推荐',
       tone: 'slate',
+      icon: <IconPdfMerge />,
     },
     {
       title: '图片压缩',
@@ -137,6 +143,7 @@ export default function HomePage({
       href: '/pdf/split',
       badge: '基础版',
       tone: 'slate',
+      icon: <IconPdfSplit />,
     },
   ]
 
@@ -226,7 +233,7 @@ export default function HomePage({
                 href="/pdf"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
               >
-                <span className="h-5 w-5 rounded-md border border-slate-200 bg-slate-50" aria-hidden="true" />
+                <IconPdf className="h-5 w-5" />
                 PDF 工具
               </Link>
             </div>
@@ -398,6 +405,7 @@ export default function HomePage({
               description="PDF 合并、拆分、压缩与转换等（本地处理，入口先行）。"
               badge="新增"
               tone="slate"
+              icon={<IconPdf />}
             />
           </div>
         </section>

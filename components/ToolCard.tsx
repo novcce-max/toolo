@@ -1,6 +1,15 @@
 // 文件路径: /components/ToolCard.tsx
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import {
+  IconPdf,
+  IconPdfCompress,
+  IconPdfMerge,
+  IconPdfSplit,
+  IconPdfImagesToPdf,
+  IconPdfToImages,
+  IconPdfRotate,
+} from '@/components/icons/ToolIcons'
 
 export type ToolCardTone = 'emerald' | 'violet' | 'blue' | 'slate' | 'amber' | 'rose'
 
@@ -70,6 +79,13 @@ type IconKey =
   | 'subtitleFormat'
   | 'subtitleShift'
   | 'subtitleMergeSplit'
+  | 'pdf'
+  | 'pdfCompress'
+  | 'pdfMerge'
+  | 'pdfSplit'
+  | 'pdfImagesToPdf'
+  | 'pdfToImages'
+  | 'pdfRotate'
   | 'default'
 
 function inferIconKeyFromHref(href: string): IconKey {
@@ -77,6 +93,7 @@ function inferIconKeyFromHref(href: string): IconKey {
   if (href === '/image') return 'image'
   if (href === '/gif') return 'gif'
   if (href === '/text') return 'text'
+  if (href === '/pdf') return 'pdf'
 
   if (href.includes('/image/compress')) return 'compress'
   if (href.includes('/image/convert')) return 'convert'
@@ -87,6 +104,13 @@ function inferIconKeyFromHref(href: string): IconKey {
   if (href.includes('/text/subtitle-format')) return 'subtitleFormat'
   if (href.includes('/text/subtitle-shift')) return 'subtitleShift'
   if (href.includes('/text/subtitle-merge-split')) return 'subtitleMergeSplit'
+
+  if (href.includes('/pdf/compress')) return 'pdfCompress'
+  if (href.includes('/pdf/merge')) return 'pdfMerge'
+  if (href.includes('/pdf/split')) return 'pdfSplit'
+  if (href.includes('/pdf/images-to-pdf')) return 'pdfImagesToPdf'
+  if (href.includes('/pdf/pdf-to-images')) return 'pdfToImages'
+  if (href.includes('/pdf/rotate')) return 'pdfRotate'
 
   return 'default'
 }
@@ -467,6 +491,21 @@ function BuiltinIcon({ name }: { name: IconKey }) {
           />
         </svg>
       )
+
+    case 'pdf':
+      return <IconPdf className="h-6 w-6" />
+    case 'pdfCompress':
+      return <IconPdfCompress className="h-6 w-6" />
+    case 'pdfMerge':
+      return <IconPdfMerge className="h-6 w-6" />
+    case 'pdfSplit':
+      return <IconPdfSplit className="h-6 w-6" />
+    case 'pdfImagesToPdf':
+      return <IconPdfImagesToPdf className="h-6 w-6" />
+    case 'pdfToImages':
+      return <IconPdfToImages className="h-6 w-6" />
+    case 'pdfRotate':
+      return <IconPdfRotate className="h-6 w-6" />
 
     default:
       return (
