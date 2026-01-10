@@ -310,6 +310,17 @@ export default function PdfRotatePage() {
     return mb.toFixed(2) + ' MB';
   }
 
+  /**
+   * 将 Uint8Array 转换为 ArrayBuffer（处理 byteOffset 和 byteLength）
+   * - 解决 TS 对 BlobPart / ArrayBufferLike 的兼容性报错（SharedArrayBuffer 场景）
+   * - 显式创建新的 ArrayBuffer 并复制数据，确保类型与运行时都稳定
+   */
+  function u8ToArrayBuffer(u8) {
+    var ab = new ArrayBuffer(u8.byteLength);
+    new Uint8Array(ab).set(new Uint8Array(u8.buffer, u8.byteOffset, u8.byteLength));
+    return ab;
+  }
+
   function cleanupUrl() {
     if (objectUrl) {
       try {
@@ -548,7 +559,7 @@ export default function PdfRotatePage() {
         }
 
         var rotatedBytes = await pdfDoc.save({ useObjectStreams: true });
-        var blob = new Blob([rotatedBytes], { type: 'application/pdf' });
+        var blob = new Blob([u8ToArrayBuffer(rotatedBytes)], { type: 'application/pdf' });
         objectUrl = URL.createObjectURL(blob);
 
         var defaultName = nameEl.textContent && nameEl.textContent !== '—' ? nameEl.textContent : 'rotated.pdf';
