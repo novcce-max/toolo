@@ -14,6 +14,10 @@ type FileItem = {
   file: File
 }
 
+function u8ToArrayBuffer(u8: Uint8Array): ArrayBuffer {
+  return u8.slice().buffer as ArrayBuffer
+}
+
 function formatSize(bytes?: number) {
   if (bytes === undefined || bytes === null) return '—'
   if (bytes < 1024) return `${bytes} B`
@@ -169,10 +173,7 @@ export default function PdfMergeClient() {
 
       const mergedBytes = (await mergedPdf.save({ useObjectStreams: true })) as Uint8Array
 
-      const arrayBuffer = new ArrayBuffer(mergedBytes.byteLength)
-      new Uint8Array(arrayBuffer).set(mergedBytes)
-
-      const blob = new Blob([arrayBuffer], { type: 'application/pdf' })
+      const blob = new Blob([u8ToArrayBuffer(mergedBytes)], { type: 'application/pdf' })
       const url = URL.createObjectURL(blob)
 
       setDownloadUrl(url)

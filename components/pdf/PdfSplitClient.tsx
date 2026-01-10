@@ -22,9 +22,8 @@ function formatSize(bytes?: number | null) {
   return `${mb.toFixed(2)} MB`
 }
 
-function normalizeU8ToBlobPart(u8: Uint8Array) {
-  // 解决 TS 对 BlobPart / ArrayBufferLike 的兼容性报错（SharedArrayBuffer 场景）
-  return u8.buffer.slice(u8.byteOffset, u8.byteOffset + u8.byteLength)
+function u8ToArrayBuffer(u8: Uint8Array): ArrayBuffer {
+  return u8.slice().buffer as ArrayBuffer
 }
 
 function parseRanges(text: string, maxPage: number | null): SplitRange[] {
@@ -182,7 +181,7 @@ export default function PdfSplitClient() {
         copied.forEach((page: any) => newDoc.addPage(page))
 
         const bytes: Uint8Array = await newDoc.save({ useObjectStreams: true })
-        const blob = new Blob([normalizeU8ToBlobPart(bytes)], { type: 'application/pdf' })
+        const blob = new Blob([u8ToArrayBuffer(bytes)], { type: 'application/pdf' })
         const url = URL.createObjectURL(blob)
 
         const label = `页码范围：${r.start}${r.start === r.end ? '' : `-${r.end}`}`
