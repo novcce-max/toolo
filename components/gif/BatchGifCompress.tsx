@@ -2,6 +2,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { u8ToArrayBuffer } from '@/lib/bytes'
 
 type GifJobStatus = '待处理' | '处理中' | '完成' | '失败'
 
@@ -91,15 +92,6 @@ function makeId(): string {
  * - 但 DOM 的 ImageData / BlobPart 类型期望更偏向 ArrayBuffer
  * - 这里用“显式创建 ArrayBuffer + 拷贝”的方式，保证类型与运行时都稳定
  */
-function makeArrayBufferFromBytes(byteLength: number): ArrayBuffer {
-  return new ArrayBuffer(Math.max(0, Math.floor(byteLength)))
-}
-
-function toArrayBufferCopyFromU8Like(src: Uint8Array | Uint8ClampedArray): ArrayBuffer {
-  const ab = makeArrayBufferFromBytes(src.byteLength)
-  new Uint8Array(ab).set(new Uint8Array(src.buffer, src.byteOffset, src.byteLength))
-  return ab
-}
 
 export default function BatchGifCompress() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
@@ -310,7 +302,7 @@ export default function BatchGifCompress() {
          * - new ImageData(typedArray, w, h) 在 TS 5.x 下可能因 buffer 推断为 ArrayBufferLike 而报错
          * - 这里显式创建 ArrayBuffer 再拷贝，确保类型为 Uint8ClampedArray<ArrayBuffer>
          */
-        const ab: ArrayBuffer = toArrayBufferCopyFromU8Like(f.data)
+        const ab: ArrayBuffer = u8ToArrayBuffer(f.data)
         const rgba: Uint8ClampedArray<ArrayBuffer> = new Uint8ClampedArray(ab)
 
         const imgData = new ImageData(rgba, f.width, f.height)
@@ -410,7 +402,7 @@ export default function BatchGifCompress() {
        * - BlobPart 在 TS 5.x 下对 ArrayBufferLike 分支更严格
        * - 这里用 ArrayBuffer 作为 BlobPart，保证类型与运行时都稳定
        */
-      const outAb: ArrayBuffer = toArrayBufferCopyFromU8Like(output)
+      const outAb: ArrayBuffer = u8ToArrayBuffer(output)
       const blob = new Blob([outAb], { type: 'image/gif' })
 
       const url = URL.createObjectURL(blob)

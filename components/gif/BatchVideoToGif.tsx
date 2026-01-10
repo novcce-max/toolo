@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { u8ToArrayBuffer } from '@/lib/bytes'
 
 type ToolStatus = '待处理' | '处理中' | '完成' | '失败' | '已取消'
 
@@ -526,9 +527,8 @@ export default function BatchVideoToGif() {
         maxColors: computedPlan.maxColors,
       })
 
-      // TS 兼容：拷贝到新的 Uint8Array（确保底层 buffer 为 ArrayBuffer）
-      const outStable = new Uint8Array(outputU8)
-      const blob = new Blob([outStable], { type: 'image/gif' })
+      // TS 兼容：使用统一的 u8ToArrayBuffer 函数（处理 byteOffset 和 byteLength）
+      const blob = new Blob([u8ToArrayBuffer(outputU8)], { type: 'image/gif' })
 
       safeRevokeObjectURL(outputUrl)
       const outUrl = URL.createObjectURL(blob)
