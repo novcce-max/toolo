@@ -115,7 +115,7 @@ export default function GifCompressPage() {
 
       <div className="space-y-6">
         {/* 首屏：简短说明 */}
-        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8">
+        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8">
           <p className="text-sm text-slate-600 leading-relaxed">
             本工具在浏览器本地对 GIF 做"缩放 / 抽帧 / 降色"组合优化，以更可控的方式降低体积。
             一期侧重稳定与可预期结果：串行处理，一次只处理一个文件。所有处理均在本地完成，不上传文件。
@@ -128,7 +128,7 @@ export default function GifCompressPage() {
         </section>
 
         {/* A. 用途与适用场景 */}
-        <section className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-4" aria-labelledby="usage-heading">
+        <section className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-4" aria-labelledby="usage-heading">
           <h2 id="usage-heading" className="text-lg font-semibold text-slate-900">用途与适用场景</h2>
           <ul className="space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-5">
             <li>平台对 GIF 体积有限制（常见为数 MB 到十几 MB），需要压缩到可上传范围。</li>
@@ -139,7 +139,7 @@ export default function GifCompressPage() {
         </section>
 
         {/* B. 一期为什么用这三旋钮 */}
-        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-4" aria-labelledby="why-three-heading">
+        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-4" aria-labelledby="why-three-heading">
           <h2 id="why-three-heading" className="text-lg font-semibold text-slate-900">为什么一期只做三旋钮</h2>
           <ul className="space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-5">
             <li>
@@ -155,7 +155,7 @@ export default function GifCompressPage() {
         </section>
 
         {/* C. Roadmap */}
-        <section className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-4" aria-labelledby="roadmap-heading">
+        <section className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-4" aria-labelledby="roadmap-heading">
           <h2 id="roadmap-heading" className="text-lg font-semibold text-slate-900">路线图（Roadmap）</h2>
           <ul className="space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-5">
             <li>目标体积模式：按目标 MB 自动给出推荐参数组合与预估。</li>
@@ -168,7 +168,7 @@ export default function GifCompressPage() {
         </section>
 
         {/* 替代方案建议 */}
-        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-4" aria-labelledby="alternatives-heading">
+        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-4" aria-labelledby="alternatives-heading">
           <h2 id="alternatives-heading" className="text-lg font-semibold text-slate-900">替代方案建议（多数平台更优）</h2>
           <p className="text-sm text-slate-600 leading-relaxed">
             多数情况下 <span className="font-medium text-slate-900">MP4 / WebM</span> 更适合“动图效果”：
@@ -177,7 +177,7 @@ export default function GifCompressPage() {
         </section>
 
         {/* FAQ */}
-        <section className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-4" aria-labelledby="faq-heading">
+        <section className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-4" aria-labelledby="faq-heading">
           <h2 id="faq-heading" className="text-lg font-semibold text-slate-900">常见问题（FAQ）</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">

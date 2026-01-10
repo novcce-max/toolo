@@ -29,8 +29,8 @@ export default function Error({
   }
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-10 space-y-6">
+    <div className="py-10 sm:py-14">
+      <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-10 space-y-6">
         <div className="space-y-3">
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
             页面遇到一点问题
@@ -79,7 +79,7 @@ export default function Error({
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="rounded-3xl border border-slate-200 bg-white px-6 py-5">
+          <div className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-6 py-5">
             <div className="text-sm font-semibold text-slate-900">你可以尝试</div>
             <ul className="mt-2 space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-5">
               <li>点击“重试”重新渲染当前页面。</li>
@@ -88,7 +88,7 @@ export default function Error({
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white px-6 py-5">
+          <div className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-6 py-5">
             <div className="text-sm font-semibold text-slate-900">隐私说明</div>
             <p className="mt-2 text-sm text-slate-600 leading-relaxed">
               toolo.cn 默认仅在浏览器本地处理文件与文本；本错误页不会上传你的内容。

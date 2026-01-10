@@ -64,7 +64,7 @@ export default function ImageCompressPage() {
       <BatchImageCompress />
 
       {/* 仅新增：相关工具区块（不改核心逻辑） */}
-      <section className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-4">
+      <section className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">相关工具</h2>
         <p className="text-sm text-slate-600 leading-relaxed">
           继续浏览其他入口或查看隐私说明。图片压缩全程本地处理，不上传。

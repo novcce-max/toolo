@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-10">
+    <div className="py-10 sm:py-14">
+      <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-10">
         <div className="space-y-3">
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
             页面未找到
@@ -58,7 +58,7 @@ export default function NotFound() {
         </div>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="rounded-3xl border border-slate-200 bg-white px-6 py-5">
+          <div className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-6 py-5">
             <div className="text-sm font-semibold text-slate-900">可能原因</div>
             <ul className="mt-2 space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-5">
               <li>链接地址拼写错误或缺少路径段。</li>
@@ -67,7 +67,7 @@ export default function NotFound() {
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white px-6 py-5">
+          <div className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-6 py-5">
             <div className="text-sm font-semibold text-slate-900">建议</div>
             <ul className="mt-2 space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-5">
               <li>从首页或分类页进入，确保路径最新。</li>

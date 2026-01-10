@@ -45,7 +45,7 @@ export default function PrivacyPage() {
         </div>
       }
     >
-      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-3">
+      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-3">
         <h2 className="text-lg font-semibold text-slate-900">我们如何处理数据</h2>
         <p className="text-sm text-slate-600 leading-relaxed">
           一期工具（例如图片压缩、SRT 清洗、字幕时间偏移）默认在浏览器本地处理。你选择的文件、粘贴的文本只用于当次计算，
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
         </p>
       </section>
 
-      <section className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-4">
+      <section className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">常见问题（FAQ）</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

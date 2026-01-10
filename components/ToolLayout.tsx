@@ -42,10 +42,10 @@ export default function ToolLayout({
     : null
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <div className="py-8 sm:py-10">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
         <div className="lg:col-span-8 space-y-6">
-          <header className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-3">
+          <header className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-3">
             {/* 面包屑（可选） */}
             {normalizedBreadcrumbs ? <Breadcrumbs items={normalizedBreadcrumbs} /> : null}
 

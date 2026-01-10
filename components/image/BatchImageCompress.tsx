@@ -171,6 +171,13 @@ export default function BatchImageCompress() {
   const [quality, setQuality] = useState<number>(0.8)
   const [maxWidthText, setMaxWidthText] = useState<string>('1920')
 
+  // 确保 input 元素在组件挂载时正确初始化（解决客户端路由切换后文件上传失效的问题）
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = ''
+    }
+  }, [])
+
   const settings: CompressSettings = useMemo(() => {
     const raw = maxWidthText.trim()
     if (!raw) return { quality, maxWidth: null }

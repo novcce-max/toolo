@@ -102,8 +102,16 @@ function toArrayBufferCopyFromU8Like(src: Uint8Array | Uint8ClampedArray): Array
 }
 
 export default function BatchGifCompress() {
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [jobs, setJobs] = useState<GifJob[]>([])
   const [isWorking, setIsWorking] = useState<boolean>(false)
+
+  // 确保 input 元素在组件挂载时正确初始化（解决客户端路由切换后文件上传失效的问题）
+  useEffect(() => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }, [])
 
   // 参数：maxWidth / keepEvery / maxColors
   const [maxWidth, setMaxWidth] = useState<number>(720)
@@ -536,6 +544,7 @@ export default function BatchGifCompress() {
           <label className="inline-flex cursor-pointer items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-900 shadow-sm hover:bg-slate-50 active:scale-[0.99]">
             选择文件
             <input
+              ref={fileInputRef}
               type="file"
               accept=".gif,image/gif"
               multiple

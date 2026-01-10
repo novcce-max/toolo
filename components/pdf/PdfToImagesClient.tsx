@@ -38,6 +38,13 @@ export default function PdfToImagesClient() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const dropzoneRef = useRef<HTMLDivElement>(null)
 
+  // 确保 input 元素在组件挂载时正确初始化（解决客户端路由切换后文件上传失效的问题）
+  useEffect(() => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }, [])
+
   // Check if PDF.js is already loaded (e.g., from previous page navigation)
   useEffect(() => {
     const checkPdfjs = () => {

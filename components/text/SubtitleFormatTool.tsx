@@ -40,6 +40,13 @@ export default function SubtitleFormatTool() {
     return () => revokeOutputUrl()
   }, [revokeOutputUrl])
 
+  // 确保 input 元素在组件挂载时正确初始化（解决客户端路由切换后文件上传失效的问题）
+  useEffect(() => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }, [])
+
   const resetAll = useCallback(() => {
     setInputText('')
     setInputFileName('')

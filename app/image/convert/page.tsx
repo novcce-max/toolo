@@ -76,11 +76,11 @@ export default function ImageConvertPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
       />
 
-      <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-6">
+      <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-6">
         <BatchImageConvert />
       </div>
 
-      <div className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-4">
+      <div className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">使用说明</h2>
         <ol className="text-sm text-slate-600 leading-relaxed list-decimal pl-5 space-y-1">
           <li>选择或拖拽导入图片（JPG/PNG/WebP）。</li>
@@ -90,7 +90,7 @@ export default function ImageConvertPage() {
         </ol>
       </div>
 
-      <div className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-4">
+      <div className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">FAQ</h2>
         <div className="space-y-3 text-sm text-slate-600 leading-relaxed">
           <div>

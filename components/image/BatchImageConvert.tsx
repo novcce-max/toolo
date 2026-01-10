@@ -149,6 +149,13 @@ export default function BatchImageConvert() {
   const [items, setItems] = useState<ConvertItem[]>([])
   const [isDragging, setIsDragging] = useState<boolean>(false)
 
+  // 确保 input 元素在组件挂载时正确初始化（解决客户端路由切换后文件上传失效的问题）
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = ''
+    }
+  }, [])
+
   const [settings, setSettings] = useState<ConvertSettings>({
     outputFormat: 'image/webp',
     quality: 80,

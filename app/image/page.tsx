@@ -208,7 +208,7 @@ export default function ImageIndexPage() {
 
       <div className="space-y-8">
         {/* Hero：说明区用“标签条”而不是卡片，降低“误以为是功能入口”的概率 */}
-        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-10 space-y-5">
+        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-10 space-y-5">
           <div className="space-y-2">
             <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">
               图片工具
@@ -353,7 +353,7 @@ export default function ImageIndexPage() {
         </section>
 
         {/* FAQ（补充语义密度 + 用户疑问） */}
-        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-4">
+        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-4">
           <h2 className="text-lg font-semibold text-slate-900">常见问题（FAQ）</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">

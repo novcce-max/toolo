@@ -34,6 +34,13 @@ export default function PdfMergeClient() {
 
   const [libReady, setLibReady] = useState(false)
   const [files, setFiles] = useState<FileItem[]>([])
+
+  // 确保 input 元素在组件挂载时正确初始化（解决客户端路由切换后文件上传失效的问题）
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = ''
+    }
+  }, [])
   const [status, setStatus] = useState<string>('选择多个 PDF 文件后，可调整顺序并点击“合并并生成 PDF”。所有处理在本地完成，不上传文件。')
   const [busy, setBusy] = useState(false)
 

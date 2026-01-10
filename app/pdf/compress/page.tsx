@@ -117,7 +117,7 @@ export default function PdfCompressPage() {
       }
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-5">
+      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-5">
         <div className="flex flex-wrap gap-2">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5">
             <span className="h-2 w-2 rounded-full bg-slate-500" />
@@ -161,7 +161,7 @@ export default function PdfCompressPage() {
       </section>
       <section
         id="tool-action"
-        className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-6 scroll-mt-24"
+        className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-6 scroll-mt-24"
       >
         <h2 className="text-lg font-semibold text-slate-900">如何在线压缩 PDF</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -313,6 +313,11 @@ export default function PdfCompressPage() {
     return 0.85;
   }
 
+  // 确保 input 元素在页面加载时正确初始化（解决客户端路由切换后文件上传失效的问题）
+  if (fileInput) {
+    fileInput.value = '';
+  }
+
   fileInput.addEventListener('change', function () {
     var file = fileInput.files && fileInput.files[0];
     selectedFile = file || null;
@@ -402,7 +407,7 @@ export default function PdfCompressPage() {
           }}
         />
       </section>
-      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-4">
+      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">常见问题（FAQ）</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">

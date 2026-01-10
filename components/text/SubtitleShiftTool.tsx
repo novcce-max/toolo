@@ -48,6 +48,13 @@ export default function SubtitleShiftTool() {
     }
   }, [])
 
+  // 确保 input 元素在组件挂载时正确初始化（解决客户端路由切换后文件上传失效的问题）
+  useEffect(() => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }, [])
+
   // 关键：组件卸载时清理下载 URL，避免内存泄漏
   useEffect(() => {
     return () => {

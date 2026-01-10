@@ -97,7 +97,7 @@ export default function VideoToGifPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-4">
+      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-4">
         <div className="space-y-2">
           <h2 className="text-lg font-semibold text-slate-900">生成 GIF</h2>
           <p className="text-sm text-slate-600 leading-relaxed">
@@ -107,7 +107,7 @@ export default function VideoToGifPage() {
         <BatchVideoToGif />
       </section>
 
-      <section className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-4">
+      <section className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">使用建议</h2>
         <ul className="text-sm text-slate-600 leading-relaxed list-disc pl-5 space-y-2">
           <li>优先截取短片段（2–6 秒），更容易稳定生成并控制体积。</li>
@@ -136,7 +136,7 @@ export default function VideoToGifPage() {
         </div>
       </section>
 
-      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-4">
+      <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">常见问题（FAQ）</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">

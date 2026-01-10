@@ -95,7 +95,7 @@ export default function PdfHubPage() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <div className="py-10 sm:py-14">
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
@@ -103,46 +103,65 @@ export default function PdfHubPage() {
       />
 
       <div className="space-y-8">
-        {/* Hero 标签条 + CTA（与其他频道一致） */}
-        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-10 space-y-4">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-900">
-              PDF 频道
-            </span>
-            <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
-              本地处理 · 不上传
-            </span>
-            <Link
-              href="/privacy"
-              className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-100/70 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
-            >
-              隐私说明
-            </Link>
+        {/* Hero：说明区用"标签条"而不是卡片，降低"误以为是功能入口"的概率 */}
+        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-10 space-y-5">
+          <div className="space-y-2">
+            <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">
+              PDF 工具
+            </h1>
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
+              在线 PDF 合并、拆分、压缩与转换工具合集。默认浏览器本地处理，不上传，无需登录；适合办公提交、资料归档与隐私文件处理。
+            </p>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">PDF 工具</h1>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
-            默认纯浏览器本地处理，不上传。面向办公提交与隐私文件：把合并、拆分、压缩与转换做得更稳、更可控。
-          </p>
+          <div className="flex flex-wrap gap-2 pt-1">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5">
+              <span className="h-2 w-2 rounded-full bg-indigo-500" />
+              <span className="text-sm text-slate-700">本地处理（默认不上传）</span>
+            </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5">
+              <span className="h-2 w-2 rounded-full bg-indigo-500" />
+              <span className="text-sm text-slate-700">合并 / 拆分 / 压缩</span>
+            </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5">
+              <span className="h-2 w-2 rounded-full bg-indigo-500" />
+              <span className="text-sm text-slate-700">办公友好（隐私优先）</span>
+            </div>
+          </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white px-6 py-6 space-y-3">
-            <div className="text-sm font-semibold text-slate-900">快速开始（建议路径）</div>
-            <ul className="list-disc pl-5 space-y-1 text-sm text-slate-600 leading-relaxed">
-              <li>要提交平台但大小受限：先压缩，不行再拆分。</li>
-              <li>多份材料要打包：先合并成单份，便于归档与发送。</li>
-              <li>需要截图/标注：从 PDF 导出图片页，再处理。</li>
-            </ul>
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            <Link
+              href="/pdf/compress"
+              className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+            >
+              立即开始
+            </Link>
+            <Link
+              href="/privacy"
+              className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+            >
+              了解隐私
+            </Link>
           </div>
         </section>
 
-        {/* 热门工具（与频道一致的区块） */}
-        <section className="space-y-3">
-          <div className="space-y-1">
+        {/* 快速开始（建议路径） */}
+        <section className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-6 space-y-3">
+          <div className="text-sm font-semibold text-slate-900">快速开始（建议路径）</div>
+          <ul className="list-disc pl-5 space-y-1 text-sm text-slate-600 leading-relaxed">
+            <li>要提交平台但大小受限：先压缩，不行再拆分。</li>
+            <li>多份材料要打包：先合并成单份，便于归档与发送。</li>
+            <li>需要截图/标注：从 PDF 导出图片页，再处理。</li>
+          </ul>
+        </section>
+
+        {/* 热门工具直达（提升导流 + 内链） */}
+        <section className="space-y-4">
+          <div className="flex items-end justify-between gap-4">
             <h2 className="text-lg font-semibold text-slate-900">热门工具</h2>
-            <p className="text-sm text-slate-600">
-              按使用频率与常见需求排序，优先展示当前最常用的 PDF 工具，其中「PDF 压缩」是推荐入口。
-            </p>
+            <div className="text-sm text-slate-600">一键直达</div>
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {tools.slice(0, 3).map((t) => (
               <ToolCard key={t.href} href={t.href} title={t.title} description={t.description} badge={t.badge} />
@@ -157,7 +176,7 @@ export default function PdfHubPage() {
             <p className="text-sm text-slate-600">按名称或描述筛选（仅本地过滤）。</p>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white px-5 py-5 space-y-4">
+          <div className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-5 space-y-4">
             <label htmlFor="site-search-pdf" className="sr-only">
               搜索 PDF 工具
             </label>
@@ -219,7 +238,7 @@ export default function PdfHubPage() {
         </section>
 
         {/* FAQ（与频道一致的区块） */}
-        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-4">
+        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-4">
           <h2 className="text-lg font-semibold text-slate-900">常见问题</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">

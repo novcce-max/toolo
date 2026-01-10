@@ -30,8 +30,8 @@ export default function GlobalError({
   return (
     <html lang="zh-CN" className="h-full">
       <body className="min-h-full bg-slate-50 text-slate-900">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-          <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-10 space-y-6">
+        <div className="px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+          <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-10 space-y-6">
             <div className="space-y-3">
               <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
                 系统暂时不可用
@@ -79,7 +79,7 @@ export default function GlobalError({
               </Link>
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-white px-6 py-5">
+            <div className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-6 py-5">
               <div className="text-sm font-semibold text-slate-900">说明</div>
               <p className="mt-2 text-sm text-slate-600 leading-relaxed">
                 toolo.cn 默认本地处理你的文件与文本；此页面不上传内容。若你希望了解隐私与本地处理机制，请查看隐私说明。

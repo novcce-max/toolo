@@ -287,9 +287,17 @@ export default function BatchVideoToGif() {
 
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
 
   // 取消/中断控制
   const cancelRef = useRef<boolean>(false)
+
+  // 确保 input 元素在组件挂载时正确初始化（解决客户端路由切换后文件上传失效的问题）
+  useEffect(() => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }, [])
 
   // 避免重复点击开始
   const runningRef = useRef<boolean>(false)
@@ -611,12 +619,15 @@ export default function BatchVideoToGif() {
           >
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
               <input
+                ref={fileInputRef}
                 type="file"
                 accept="video/*"
                 className="block w-full text-sm text-slate-700 file:mr-3 file:rounded-full file:border file:border-slate-200 file:bg-white file:px-4 file:py-2 file:text-sm file:font-medium file:text-slate-700 hover:file:bg-slate-100/70 focus:outline-none"
                 onChange={(e) => {
                   const f = e.target.files?.[0] ?? null
                   onPickFile(f)
+                  // 允许重复选择同一文件
+                  e.target.value = ''
                 }}
                 disabled={status === '处理中'}
               />

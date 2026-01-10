@@ -148,7 +148,7 @@ export default function HomePage({
   ]
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <div className="py-10 sm:py-14">
       <div className="space-y-8">
         <script
           type="application/ld+json"
@@ -157,7 +157,7 @@ export default function HomePage({
         />
 
         {/* Hero：与 /image /gif /text 同款（介绍感强，避免误认“入口卡片”） */}
-        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-10 space-y-5">
+        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-10 space-y-5">
           <div className="space-y-2">
             <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">
               toolo.cn 在线工具箱
@@ -411,7 +411,7 @@ export default function HomePage({
         </section>
 
         {/* 隐私说明 */}
-        <section className="rounded-3xl border border-slate-200 bg-white px-6 sm:px-10 py-8 space-y-3">
+        <section className="rounded-3xl border border-slate-200 bg-white px-4 sm:px-6 lg:px-10 py-8 space-y-3">
           <h2 className="text-lg font-semibold text-slate-900">隐私与本地处理</h2>
           <p className="text-sm text-slate-600 leading-relaxed max-w-3xl">
             toolo.cn 一期默认“浏览器本地处理”。你选择的文件（例如 .srt、图片、GIF、视频片段、PDF）优先在本机完成计算，
@@ -420,7 +420,7 @@ export default function HomePage({
         </section>
 
         {/* FAQ */}
-        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-6 sm:px-10 py-8 space-y-4">
+        <section className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 sm:px-6 lg:px-10 py-8 space-y-4">
           <h2 className="text-lg font-semibold text-slate-900">常见问题（FAQ）</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
