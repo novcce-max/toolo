@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { ReactElement } from 'react'
 import ToolCard from '@/components/ToolCard'
+import DomToolFilter from '@/components/site/DomToolFilter'
 
 export const metadata: Metadata = {
   title: '在线图片压缩、图片格式转换（JPG/PNG/WebP）- toolo.cn（本地处理）',
@@ -316,39 +317,10 @@ export default function ImageIndexPage() {
             </div>
           </div>
 
-          <script
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `
-(function () {
-  var input = document.getElementById('site-search-image');
-  var list = document.getElementById('site-search-list-image');
-  var empty = document.getElementById('site-search-empty-image');
-  if (!input || !list || !empty) return;
-
-  function norm(s) { return (s || '').toLowerCase(); }
-
-  function apply() {
-    var q = norm(input.value).trim();
-    var items = list.querySelectorAll('.tool-item');
-    var visible = 0;
-
-    items.forEach(function (el) {
-      var t = norm(el.getAttribute('data-title'));
-      var d = norm(el.getAttribute('data-description'));
-      var hit = !q || t.indexOf(q) !== -1 || d.indexOf(q) !== -1;
-      if (hit) { el.classList.remove('hidden'); visible++; }
-      else { el.classList.add('hidden'); }
-    });
-
-    if (visible === 0) empty.classList.remove('hidden');
-    else empty.classList.add('hidden');
-  }
-
-  input.addEventListener('input', apply);
-})();
-              `.trim(),
-            }}
+          <DomToolFilter
+            inputId="site-search-image"
+            listId="site-search-list-image"
+            emptyId="site-search-empty-image"
           />
         </section>
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { ReactElement } from 'react'
 import ToolCard from '@/components/ToolCard'
+import DomToolFilter from '@/components/site/DomToolFilter'
 
 export const metadata: Metadata = {
   title: '在线 GIF 压缩、视频转 GIF（本地处理不上传）- toolo.cn',
@@ -285,39 +286,10 @@ export default function GifHubPage() {
             </div>
           </div>
 
-          <script
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `
-(function () {
-  var input = document.getElementById('site-search-gif');
-  var list = document.getElementById('site-search-list-gif');
-  var empty = document.getElementById('site-search-empty-gif');
-  if (!input || !list || !empty) return;
-
-  function norm(s) { return (s || '').toLowerCase(); }
-
-  function apply() {
-    var q = norm(input.value).trim();
-    var items = list.querySelectorAll('.tool-item');
-    var visible = 0;
-
-    items.forEach(function (el) {
-      var t = norm(el.getAttribute('data-title'));
-      var d = norm(el.getAttribute('data-description'));
-      var hit = !q || t.indexOf(q) !== -1 || d.indexOf(q) !== -1;
-      if (hit) { el.classList.remove('hidden'); visible++; }
-      else { el.classList.add('hidden'); }
-    });
-
-    if (visible === 0) empty.classList.remove('hidden');
-    else empty.classList.add('hidden');
-  }
-
-  input.addEventListener('input', apply);
-})();
-              `.trim(),
-            }}
+          <DomToolFilter
+            inputId="site-search-gif"
+            listId="site-search-list-gif"
+            emptyId="site-search-empty-gif"
           />
         </section>
 

@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { ReactElement } from 'react'
 import ToolCard from '@/components/ToolCard'
+import DomToolFilter from '@/components/site/DomToolFilter'
 import {
   IconImage,
   IconCompress,
@@ -299,72 +300,13 @@ export default function HomePage({
             ))}
           </div>
 
-          <script
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `
-(function () {
-  var input = document.getElementById('site-search-home');
-  var list = document.getElementById('site-search-list-home');
-  var empty = document.getElementById('site-search-empty-home');
-  var clearBtn = document.getElementById('site-search-home-clear');
-  if (!input || !list || !empty) return;
-
-  function norm(s) { return (s || '').toLowerCase(); }
-
-  function apply() {
-    var q = norm(input.value).trim();
-    var items = list.querySelectorAll('.tool-item');
-    var visible = 0;
-
-    items.forEach(function (el) {
-      var t = norm(el.getAttribute('data-title'));
-      var d = norm(el.getAttribute('data-description'));
-      var hit = !q || t.indexOf(q) !== -1 || d.indexOf(q) !== -1;
-      if (hit) { el.classList.remove('hidden'); visible++; }
-      else { el.classList.add('hidden'); }
-    });
-
-    if (visible === 0) empty.classList.remove('hidden');
-    else empty.classList.add('hidden');
-
-    // 同步 URL（不刷新页面）：让 SearchAction 与真实行为一致
-    try {
-      var url = new URL(window.location.href);
-      if (q) url.searchParams.set('q', input.value);
-      else url.searchParams.delete('q');
-      window.history.replaceState({}, '', url.toString());
-    } catch (e) {}
-  }
-
-  input.addEventListener('input', apply);
-  if (clearBtn) {
-    clearBtn.addEventListener('click', function () {
-      input.value = '';
-      apply();
-      input.focus();
-    });
-  }
-
-  // 键盘快捷键：在页面任意位置按 / 聚焦搜索框（不打断正在输入的表单）
-  window.addEventListener('keydown', function (e) {
-    if (
-      e.key === '/' &&
-      !e.defaultPrevented &&
-      document.activeElement &&
-      (document.activeElement.tagName === 'BODY' ||
-        document.activeElement.tagName === 'MAIN' ||
-        (document.activeElement instanceof HTMLElement && document.activeElement.closest('input, textarea') === null))
-    ) {
-      e.preventDefault();
-      input.focus();
-    }
-  });
-
-  apply(); // 初次渲染：支持 ?q= 预填后立刻筛选
-})();
-              `.trim(),
-            }}
+          <DomToolFilter
+            inputId="site-search-home"
+            listId="site-search-list-home"
+            emptyId="site-search-empty-home"
+            clearButtonId="site-search-home-clear"
+            syncQueryParamKey="q"
+            enableSlashFocus
           />
         </section>
 
